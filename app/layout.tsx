@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 
-const merienda = Merienda({ subsets: ["latin"] });
+const merienda = Merienda({ subsets: ["latin"], display:"swap" });
 
 export const metadata: Metadata = {
   title: "NDesignz - Your Interior Pro",

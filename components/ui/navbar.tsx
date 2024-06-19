@@ -1,10 +1,30 @@
+"use client"
 import Image from 'next/image'
 import Link from 'next/link'
 import Alpha from "@/public/images/Brand/logo-black.png"
+import { useEffect, useState } from 'react';
 
 const Navbar = () => {
+    const [bgColor, setBgColor] = useState('bg-black/0');
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setBgColor('bg-black');
+            } else {
+                setBgColor('bg-black/0');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <div className='fixed w-full top-0 flex items-center justify-between px-20 bg-black/0 py-4 h-28'>
+        <div className={`fixed w-full top-0 flex items-center justify-between px-20 py-4 h-28 ${bgColor} smooth`}>
             <Link href={''} className='h-24 w-24 overflow-hidden'>
                 <Image src={Alpha} alt={'Alpha Solutions'} className='w-full h-auto' />
             </Link>
@@ -17,7 +37,7 @@ const Navbar = () => {
                         <Link className='text-white hover:text-gold-500' href={'/'}>Gallery</Link>
                     </li>
                     <li>
-                        <Link className='text-white hover:text-gold-500' href={'/'}>Services</Link>
+                        <Link className='text-white hover:text-gold-500' href={'/#services'}>Services</Link>
                     </li>
                     <li>
                         <Link className='text-white hover:text-gold-500' href={'/'}>About Us</Link>
